@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Button</title>
+    <style>
+    body {
+        position: relative;
+        height: 100vh;
+        background-color: white;
+        margin: 0;
+    }
+
+    .btn {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        height: 40px;
+        width: 50px;
+        border-radius: 5px;
+        font-size: 20px;
+        transition: all 0.5s ease-in-out;
+        overflow: hidden;
+        border: none;
+    }
+
+    .btn.center {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .btn.height {
+        height: 700px;
+        width: 1500px;
+        box-shadow: 0 0 20px rgba(50, 50, 50, 1);
+    }
+
+    /* Responsive qo‘shimchalar */
+    @media (max-width: 1600px) {
+        .btn.height {
+            width: 90vw;
+            max-width: 1500px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .btn.height {
+            width: 95vw;
+            height: 60vh;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .btn.height {
+            width: 95vw;
+            height: 50vh;
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .btn.height {
+            width: 90vw;
+            height: 40vh;
+            font-size: 14px;
+        }
+    }
+</style>
+
+</head>
+<body>
+    <button id="btn" class="btn">start</button>
+
+    <script>
+        let btn = document.querySelector("#btn");
+
+        let content = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minima aperiam rem consequatur consequuntur porro sint nostrum rerum dolorum aliquam, quam quisquam, cupiditate exercitationem tenetur, beatae sed aspernatur. Est maiores, ad quis tempora quam porro molestias similique, hic illum blanditiis facilis, culpa nihil dolorum necessitatibus natus doloribus ipsa dignissimos commodi ratione explicabo! Exercitationem tempora, sapiente nemo ratione voluptatum ex nobis architecto recusandae perferendis eligendi repellat! Sapiente sint harum dolores, velit necessitatibus id cum! Illum voluptate ad voluptatem fuga quidem. Veritatis repellendus ipsam maiores recusandae reiciendis. Vitae dolorum laudantium dolorem ad eaque, voluptate ab vel quam asperiores nesciunt facilis assumenda expedita amet.";
+
+        btn.addEventListener("click", function () {
+            btn.classList.add("center");
+
+            setTimeout(() => {
+                btn.classList.add("height");
+
+                btn.textContent = "";
+                let i = 0;
+
+                let interval = setInterval(() => {
+                    btn.textContent += content[i];
+                    i++;
+                    if (i === content.length) clearInterval(interval);
+
+                    if (i === content.length) {
+                        setTimeout(() => {
+                            btn.classList.remove("height");
+                        }, 1000);
+                    }
+
+                    setTimeout(() => {
+                        btn.classList.remove("center");
+                        btn.textContent = "start";
+                    }, 3900);
+
+                }, 1);
+
+            }, 400);
+        });
+    </script>
+</body>
+</html>
